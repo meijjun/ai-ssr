@@ -30,8 +30,8 @@ export default function Login() {
       if (result.error) {
         setError('邮箱或密码不正确');
       } else {
-        // 登录成功后始终跳转到空白页
-        router.push('/blank');
+        // 修改这里：登录成功后跳转到首页
+        router.push('/');
       }
     } catch (error) {
       console.error('登录错误:', error);
