@@ -3,15 +3,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
-
-  // 添加调试日志
-  console.log('UserMenu 组件渲染:', { session, status });
 
   // 处理点击事件，切换菜单显示状态
   const toggleMenu = () => {
@@ -54,19 +50,9 @@ export default function UserMenu() {
         className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 focus:outline-none"
       >
         <span className="hidden md:inline">{session.user.name || session.user.email}</span>
-        {session.user.image ? (
-          <Image
-            src={session.user.image}
-            alt="用户头像"
-            width={32}
-            height={32}
-            className="rounded-full"
-          />
-        ) : (
-          <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">
-            {(session.user.name || session.user.email).charAt(0).toUpperCase()}
-          </div>
-        )}
+        <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-white">
+          {(session.user.name || session.user.email).charAt(0).toUpperCase()}
+        </div>
       </button>
 
       {isOpen && (

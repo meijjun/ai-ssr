@@ -8,9 +8,6 @@ import UserMenu from './UserMenu';
 export default function Navbar() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
-  
-  // 添加调试日志
-  console.log('Navbar 组件渲染:', { session, status });
 
   // 导航链接
   const navLinks = [
