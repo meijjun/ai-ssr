@@ -8,7 +8,8 @@ import Link from 'next/link';
 export default function Login() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/';
+  // 将默认跳转页面改为空白页
+  const callbackUrl = '/blank';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -29,7 +30,8 @@ export default function Login() {
       if (result.error) {
         setError('邮箱或密码不正确');
       } else {
-        router.push(callbackUrl);
+        // 登录成功后始终跳转到空白页
+        router.push('/blank');
       }
     } catch (error) {
       console.error('登录错误:', error);
